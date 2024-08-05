@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McDog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .order-now {
+            background-color: #ffcc00;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .promo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .promo-image {
+            max-width: 400px;
+        }
+
+        .promo-text {
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .promo-text h1 {
+            font-size: 24px;
+        }
+
+        .promo-text p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .order-app {
+            background-color: #ffcc00;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Updated Contract Address Styles */
+        .contract-address {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contract-address h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #000;
+        }
+
+        .contract-address p {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #000;
+            word-break: break-all;
+        }
+
+        .contract-address button {
+            background-color: #000;
+            color: #ffcc00;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .contract-address button:hover {
+            background-color: #333;
+        }
+
+
+        /* Timeline Styles */
+        .timeline {
+            background-color: #f8f8f8;
+            padding: 40px 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .timeline h2 {
+            text-align: center;
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .timeline-event {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .timeline-event img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .timeline-description {
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        .timeline-description h3 {
+            font-size: 20px;
+            color: #333;
+            margin: 0 0 10px;
+        }
+
+        .timeline-description p {
+            font-size: 16px;
+            color: #666;
+            margin: 0;
+        }
+
+
+        footer {
+            background-color: #f8f8f8;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+
+        .cookie-buttons {
+            margin-top: 10px;
+        }
+
+        .cookie-buttons button {
+            background-color: #ffcc00;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        /* Updated Meme Carousel Styles */
+        .meme-carousel {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%; /* Ensure the container takes the full width */
+            justify-content: flex-start; /* Align items to the start */
+        }
+
+        .meme-slide {
+            flex: 0 0 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            width: 100%; /* Ensure each slide takes the full width */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+
+        .meme-slide img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 204, 0, 0.8);
+            color: #000;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(255, 204, 0, 1);
+        }
+
+        .carousel-button.prev {
+            left: 10px;
+        }
+
+        .carousel-button.next {
+            right: 10px;
+        }
+
+        .meme-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .indicator-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .indicator-dot.active {
+            background-color: #ffcc00;
+        }
+
+        .confirmation-message {
+            color: green;
+            font-size: 14px;
+            margin-left: 10px;
+            display: none;
+        }
+
+        @media (max-width: 800px) {
+            .promo-image {
+                transform: scale(0.65);
+                margin-right: 0px;
+            }
+            .promo-text {
+                min-width: 200px;
+                transform: translateX(-30%);
+                margin-left: 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="assets/mcdog-logo.jpg" alt="McDog Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="https://x.com/mcdogonsol" target="_blank"><img src="assets/X.png" alt="Twitter" style="vertical-align: middle; margin-right: 5px; height: 17px; width: auto;">Twitter Socials</a></li>
+                    <li><a href="https://t.me/mcdogcto" target="_blank"><img src="assets/telegram.png" alt="Telegram" style="vertical-align: middle; margin-right: 5px; height: 21px; width: auto;">Telegram Community</a></li>
+                    <li><a href="https://dexscreener.com/solana/6YMGr9N6Pe1JPoxawa634Njjhc6JgFQncvijhvCcpump" target="_blank"><img src="assets/dexscreen.png" alt="DexScreener" style="vertical-align: middle; margin-right: 5px; height: 22px; width: auto;">McDog DexScreener</a></li>
+                    <li><a href="https://www.dextools.io/app/en/solana/pair-explorer/6YMGr9N6Pe1JPoxawa634Njjhc6JgFQncvijhvCcpump" target="_blank">McDog DexTools</a></li>
+                    <li><a href="#" id="copy-ca-btn">Copy CA</a> <span id="ca-confirmation" class="confirmation-message"></span></li>
+                    <li><a href="https://x.com/mcdogonsol/status/1820138581136191949" target="_blank">Best Highlights</a></li>
+                    <li><a href="#timeline">Timeline Plan</a></li>
+                </ul>
+            </nav>
+            
+            <a href="https://www.dextools.io/app/en/solana/pair-explorer/6YMGr9N6Pe1JPoxawa634Njjhc6JgFQncvijhvCcpump">
+                <button class="order-now">Order Now</button>
+            </a>
+            
+        </div>
+    </header>
+    <main>
+        <section class="promo">
+            <img src="assets/mcdog-vapor.jpg" alt="McDog Promo" class="promo-image">
+            <div class="promo-text">
+                <h1>Up your meme coin game and chill with the new McDog Coin</h1>
+                <p>Dev jeeted for burgers, so community took over.</p>
+                <a href="https://www.dextools.io/app/en/solana/pair-explorer/6YMGr9N6Pe1JPoxawa634Njjhc6JgFQncvijhvCcpump" target="_blank">
+                    <button class="order-app">Order McDog Coin</button>
+                </a>
+            </div>
+        </section>
+        <section class="meme-carousel">
+            <div class="carousel-container">
+                <div class="meme-slide"><img src="assets/meme1.jpg" alt="Meme 1"></div>
+                <div class="meme-slide"><img src="assets/meme2.jpg" alt="Meme 2"></div>
+                <div class="meme-slide"><img src="assets/meme3.jpg" alt="Meme 3"></div>
+                <div class="meme-slide"><img src="assets/meme4.jpg" alt="Meme 4"></div>
+                <div class="meme-slide"><img src="assets/meme5.jpg" alt="Meme 5"></div>
+                <div class="meme-slide"><img src="assets/meme6.jpg" alt="Meme 6"></div>
+                <div class="meme-slide"><img src="assets/meme7.jpg" alt="Meme 7"></div>
+                <div class="meme-slide"><img src="assets/meme8.jpg" alt="Meme 8"></div>
+                <div class="meme-slide"><img src="assets/meme9.jpg" alt="Meme 9"></div>
+                <div class="meme-slide"><img src="assets/meme10.jpg" alt="Meme 10"></div>
+                <div class="meme-slide"><img src="assets/meme11.jpg" alt="Meme 11"></div>
+                <div class="meme-slide"><img src="assets/meme12.jpg" alt="Meme 12"></div>
+                <div class="meme-slide"><img src="assets/meme13.jpg" alt="Meme 13"></div>
+                <div class="meme-slide"><img src="assets/meme14.jpg" alt="Meme 14"></div>
+                <div class="meme-slide"><img src="assets/meme15.jpg" alt="Meme 15"></div>
+                <div class="meme-slide"><img src="assets/meme16.jpg" alt="Meme 16"></div>
+                <div class="meme-slide"><img src="assets/meme17.jpg" alt="Meme 17"></div>
+            </div>
+            <button class="carousel-button prev">&lt;</button>
+            <button class="carousel-button next">&gt;</button>
+            <div class="meme-indicator"></div>
+        </section>
+
+        <!-- Contract Address Section -->
+        <section class="contract-address">
+            <h2>Contract Address</h2>
+            <p id="contract-address">6YMGr9N6Pe1JPoxawa634Njjhc6JgFQncvijhvCcpump</p>
+            <button id="copy-contract-address">Copy Contract Address</button> <span id="contract-address-confirmation" class="confirmation-message"></span>
+        </section>
+
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="timeline">
+            <h2>Timeline</h2>
+            <div class="timeline-event">
+                <img src="assets/moon.jpg" alt="Timeline Event 1">
+                <div class="timeline-description">
+                    <h3>Landing on the Moon</h3>
+                    <p>McDog reaches new heights as it lands on the moon, setting a new standard for meme coins everywhere.</p>
+                </div>
+            </div>
+            <div class="timeline-event">
+                <img src="assets/lots-burgers.jpg" alt="Timeline Event 2">
+                <div class="timeline-description">
+                    <h3>Burger Frenzy</h3>
+                    <p>Community comes together for a massive burger feast, celebrating the meme coin's rise to fame.</p>
+                </div>
+            </div>
+            <div class="timeline-event">
+                <img src="assets/flying.jpg" alt="Timeline Event 3">
+                <div class="timeline-description">
+                    <h3>Flying High</h3>
+                    <p>McDog takes flight, soaring through solana and gaining popularity at an unprecedented rate.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+        <p>McDog is sliding across the solana-verse on McSingles, but he is speeding up fast and might reach escape velocity soon...</p>
+        <div class="cookie-buttons">
+            <a href="https://x.com/mcdogonsol">
+                <button>Socials</button>
+            </a>
+            <a href="https://t.me/mcdogcto">
+                <button>Community</button>
+            </a>
+
+            <a href="https://dexscreener.com/solana/6YMGr9N6Pe1JPoxawa634Njjhc6JgFQncvijhvCcpump">
+                <button>Chart</button>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel-container');
+            const slides = document.querySelectorAll('.meme-slide');
+            const prevButton = document.querySelector('.carousel-button.prev');
+            const nextButton = document.querySelector('.carousel-button.next');
+            const indicator = document.querySelector('.meme-indicator');
+
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            // Create indicator dots
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('indicator-dot');
+                dot.addEventListener('click', () => goToSlide(index));
+                indicator.appendChild(dot);
+            });
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateIndicators();
+            }
+
+            function updateIndicators() {
+                document.querySelectorAll('.indicator-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            function goToSlide(index) {
+                currentIndex = index;
+                updateCarousel();
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+
+            nextButton.addEventListener('click', nextSlide);
+            prevButton.addEventListener('click', prevSlide);
+
+            // Auto-advance carousel
+            setInterval(nextSlide, 5000);
+
+            // Initial setup
+            updateCarousel();
+
+            const copyCaBtn = document.getElementById('copy-ca-btn');
+            const copyContractAddressBtn = document.getElementById('copy-contract-address');
+            const contractAddress = document.getElementById('contract-address').innerText;
+            const caConfirmation = document.getElementById('ca-confirmation');
+            const contractAddressConfirmation = document.getElementById('contract-address-confirmation');
+
+            function showConfirmation(element) {
+                element.style.display = 'inline';
+                element.textContent = 'Copied!';
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, 2000);
+            }
+
+            copyCaBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(contractAddress).then(() => {
+                    showConfirmation(caConfirmation);
+                });
+            });
+
+            copyContractAddressBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(contractAddress).then(() => {
+                    showConfirmation(contractAddressConfirmation);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
